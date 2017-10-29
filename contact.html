@@ -52,22 +52,30 @@
 
 	<link rel="stylesheet" href="css/style.css">
 
-
 	<!-- Modernizr JS -->
 	<script src="js/modernizr-2.6.2.min.js"></script>
+	
 	<!-- FOR IE9 below -->
 	<!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
+	
+	
 
 	</head>
 	<body>
+	
+	<link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+   <!-- Style The Contact Form How Ever You Prefer -->
+   <link rel="stylesheet" href="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/style.css">
+   
 	<div class="box-wrap">
 		<header role="banner" id="fh5co-header">
 			<div class="container">
 				<nav class="navbar navbar-default">
 					<div class="row">
-						<div class="col-md-3">
+						<div class="col-md-2 col-md-offset-1">
 							<div class="fh5co-navbar-brand">
 								<a class="fh5co-logo" href="index.html"><img src="images/brand-nav.png" alt="Closest Logo"></a>
 							</div>
@@ -98,7 +106,7 @@
 					<div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2 text-center">
 						<div class="intro animate-box">
 							<h1>Escríbenos</h1>
-							<h2>Envíanos propuestas, recibe información o salúdanos.</h2>
+							<h2>Envíanos propuestas, pide información o salúdanos!</h2>
 						</div>
 					</div>
 				</div>
@@ -108,44 +116,57 @@
 		<main id="main">
 			<div class="container">
 				<div class="col-md-8 col-md-offset-2 animate-box">
-					<form action="mailto:martir_go@hotmail.com" enctype="text/plain">
-						<div class="form-group row">
-							<div class="col-md-6 field">
-								<label for="firstname">First Name</label>
-								<input type="text" name="FName" id="firstname" class="form-control">
-							</div>
-							<div class="col-md-6 field">
-								<label for="lastname">Last Name</label>
-								<input type="text" name="FName" id="lastname" class="form-control">
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-md-6 field">
-								<label for="email">Email</label>
-								<input type="text" name="FName" id="email" class="form-control">
-							</div>
-							<div class="col-md-6 field">
-								<label for="phone">Phone</label>
-								<input type="text" name="FName" id="phone" class="form-control">
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-md-12 field">
-								<label for="message">Message</label>
-								<textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-md-12 field">
-								<input type="submit" id="submit" class="btn btn-primary" value="Send Message">
-							</div>
-						</div>
-					</form>
+					<form id="gform" method="POST" class="pure-form pure-form-stacked" data-email="example@email.net"
+					  action="https://script.google.com/macros/s/AKfycbxvphHN8lGn6Xnv4RgiAa4oE8Bbt0yb8JIM8on0o1R_Cr4KnlQ/exec">
+						<!-- change the form action to your script url -->
+
+						<fieldset class="pure-group">
+						  <label for="name">Nombre: </label>
+						  <input id="name" name="name" placeholder="Como te llamó tu mamá..." />
+						</fieldset>
+
+						<fieldset class="pure-group">
+						  <label for="message">Mensaje: </label>
+						  <textarea id="message" name="message" rows="10"
+						  placeholder="Cuéntanos en qué estás pensando..."></textarea>
+						</fieldset>
+
+						<fieldset class="pure-group">
+						  <label for="email">Tu email: </label>
+						  <input id="email" name="email" type="email" value=""
+						  required placeholder="ejemplo@email.com"/>
+						  <span id="email-invalid" style="display:none">
+							Debe ser una dirección válida</span>
+						</fieldset>
+
+						<!--<fieldset class="pure-group">
+						  <label for="color">Favourite Color: </label>
+						  <input id="color" name="color" placeholder="green" />
+						</fieldset>-->
+
+						<button class="button-success pure-button button-xlarge">
+						  <i class="fa fa-paper-plane"></i>&nbsp;Enviar</button>
+
+					  </form>
+
+					  <!-- Customise the Thankyou Message People See when they submit the form: -->
+					  <div style="display:none;" id="thankyou_message">
+						<h2>Gracias por contactar!
+						  Te contestaremos pronto!</h2>
+					  </div>
+
+					  <!-- Submit the Form to Google Using "AJAX" -->
+					  <script data-cfasync="false" type="text/javascript"
+					  src="https://cdn.rawgit.com/dwyl/html-form-send-email-via-google-script-without-server/master/form-submission-handler.js"></script>
+					  <!-- <script data-cfasync="false" type="text/javascript"
+					  src="/form-submission-handler.js"></script> -->
+					<!-- END -->
 				</div>
 				<!-- <div class="col-md-4"></div> -->
 			</div>
+			
 		</main>
-	
+		
 
 		<footer id="footer" role="contentinfo">
 			<div class="container">
@@ -172,6 +193,7 @@
 
 	<!-- Main JS (Do not remove) -->
 	<script src="js/main.js"></script>
+	
 
 	</body>
 </html>
